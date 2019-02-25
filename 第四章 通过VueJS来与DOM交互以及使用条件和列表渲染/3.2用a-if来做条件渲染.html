@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .div_1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin-right: 20px;
+        }
+        .div_2{
+            width: 200px;
+            height: 200px;
+            background-color:yellow;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="app">
+            <button @click="but">{{btnName}}</button>
+        <div class="div_1"></div>
+        <div class="div_2" v-if="flag"></div>
+        <br>
+        
+    </div>
+</body>
+</html>
+<script>
+
+    new  Vue({
+        el:"#app",
+        data:{
+            flag:true,
+            btnName:"隐藏"
+        },
+        methods:{
+            but:function(){
+                this.flag=!this.flag;
+                this.btnName = this.flag==true?"隐藏":"显示";
+            }
+        }
+    })
+
+</script>

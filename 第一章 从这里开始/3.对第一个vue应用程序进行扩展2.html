@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+                                            <!--   添加双重事件 -->
+        <input type="text" id="tt" v-on:input="in_inp" v-on:click="in_inp2"/>
+        <p>{{title}}</p>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            title:"这是虚度光阴的一天"
+        },
+        methods:{
+            in_inp:function(event){
+                // this.title=tt.value;
+            //第二种方法
+                this.title=event.target.value;
+            },
+            in_inp2:function(){
+                this.title="hello world";
+            }
+        }
+    })
+</script>

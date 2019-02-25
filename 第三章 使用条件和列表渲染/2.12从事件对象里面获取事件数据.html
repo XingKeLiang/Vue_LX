@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取事件数据</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <p v-on:mousemove="updateCoordinates">updateCoordinates:{{x}}/{{y}}</p>
+
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el:"#app",
+        data:{
+            x:0,
+            y:0
+        },
+        methods:{
+            updateCoordinates:function(event){
+                this.x=event.clientX;
+                this.y=event.clientY;
+            }
+        }
+    })
+
+
+</script>

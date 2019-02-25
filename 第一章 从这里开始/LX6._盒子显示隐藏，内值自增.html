@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <style>
+        .box{
+            width: 250px;
+            height: 200px;
+            background: red;
+            border: 1px solid #fff;
+            margin: 100px auto;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 显示按钮 -->
+        <button v-on:click="show">show</button>
+        <!-- 隐藏按钮 -->
+        <button @click="hide">hide</button>
+        <!-- 反向按钮 -->
+        <button @click="fanzhuan">反转</button>
+        <!-- 自增按钮 -->
+        <button @click="add">add</button>
+        <!-- 盒子 -->
+        <div class="box" v-show="boolean">{{zhi}}</div>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el :"#app",
+        data:{
+            zhi:"1",
+            boolean:true
+        },
+        methods:{
+            show:function(){
+                this.boolean=true;
+            },
+            hide:function(){
+                this.boolean=false;
+            },
+            fanzhuan:function(){
+                if (this.boolean) {
+                    this.boolean=false
+                } else {
+                    this.boolean=true
+                }
+            },
+            // 手动自增
+            // add:function(){
+            //     this.zhi++
+            // }
+            //自动自增
+            add:function(){
+                let that = this;
+                setInterval(function(){
+                    that.zhi++
+                }, 100);
+            }
+        }
+    })
+</script>

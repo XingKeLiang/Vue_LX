@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js"></script>
+	</head>
+	<body>
+		<div id="add">
+			<input type="text" v-on:input="in_inp"/>
+			<p>{{title}}</p>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	new Vue({
+		el:"#add",
+		data:{
+			title:"helloworld"
+		},
+		methods:{
+			in_inp:function(event){
+				this.title=event.target.value;
+			}
+		} 
+	})
+</script>

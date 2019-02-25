@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text"id="ff" @input="in_inp" @click="in_cli">
+        <p>{{title}}</p>
+        <h1 v-text="v_text"></h1>
+        <!-- 解析后   与v_text效果相反 -->
+        <p v-html="baidu">{{baidu}}</p>
+        <a :href="link">百度一下，你就知道</a>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            title:"无关紧要的一句话",
+            baidu:"<a href='https://www.baidu.com'>百度一下，你就知道<a>",
+            v_text:"<h1>这是一段纯文本<h1>",
+            link:"https://baidu.com"
+        },
+        methods:{
+            in_inp:function(){
+                this.title=ff.value;
+            },
+            in_cli:function(){
+                this.title="hello world"
+            }
+        }
+    })
+</script>

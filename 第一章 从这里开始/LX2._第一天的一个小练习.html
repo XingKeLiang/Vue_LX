@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #ff{
+            width: 100px;
+            height: 100px;
+            background:red;
+            margin: 50px auto;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--绑定事件监听 -->
+        <input type="text" v-on:input="in_inp">
+
+
+        <!-- //防止二次渲染 -->
+        <p v-once>{{title}}</p>
+
+
+        <!-- 不会解析标签 -->
+        <h1 v-text="vText"></h1>
+
+
+        <!-- 将标签语义解析出来以后 -->
+        <p v-html="vHtml">{{cli}}</p>
+
+
+        <!-- 绑定属性 -->
+        <a v-bind:href="hrefs">hahahahhahah</a>
+
+
+        <!-- if    else -->
+        <div class="vue" v-if="num==1">11111</div>
+        <div class="vue" v-else-if="num==2">2222</div>
+        <div class="vue" v-else-if="num==3">33333</div>
+        <div class="vue" v-else>44444</div>
+
+
+        <!-- 显示隐藏 -->
+        <div id="ff" v-show="bool">这是一句话</div>
+    </div>
+</body>
+</html>
+<script>
+        new Vue({
+            el:"#app",
+            data:{
+                title:"这是一个乖宝宝",
+                cli:"点击搜索",
+                vText:"<a href='https://www.baidu.com'>百度一下，你就知道</a>",
+                vHtml:"<a href='https://www.baidu.com'>百度一下，你就知道</a>",
+                hrefs:"https://www.baidu.com",
+                num:3,
+                bool:false
+            },
+            methods:{
+                in_inp:function(){
+                   return this.title="好搞笑";
+                }
+            }
+        })
+</script>

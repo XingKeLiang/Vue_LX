@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-on:input="in_inp" v-on:click="in_cli">
+        <p>{{title}}</p>
+        <!-- v-text    类似于innerTEXT,不会将标签解析 -->
+        <h1 v-text="vText"></h1>
+    </div>
+</body>
+</html>
+<script> 
+    new Vue({
+        el:"#app",
+        data:{
+            title:"你是一条汉子,我敬重你",
+            vText:"<h1>这是没有解析的一ge标签<h1>"
+        },
+        methods:{
+            in_inp:function(event){
+                this.title=event.target.value;
+            },
+            in_cli:function(){
+                this.title="Hello World"
+            }
+        }
+    })
+
+</script>

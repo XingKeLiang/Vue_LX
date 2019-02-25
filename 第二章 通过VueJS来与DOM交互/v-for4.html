@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <li v-for="(inte,i) in arrData">{{inte}}{{i}}</li>
+        <p v-for="ins in objData">
+            <span v-for="v,k,index in ins">{{k}},{{v}},{{index}}</span>
+        </p>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            arrData:["meat","fruit","apple","hello"],
+            objData:[
+                {name:"张三",age:23,sex:"男"},
+                {name : "李四",love : "唱歌",sex : "女"}
+            ]
+        }
+    })
+
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style> 
+        .myCss{
+            width:200px;
+            height: 200px;
+            background: #ccc;
+            float: left;
+            margin-right: 50px;
+        }
+        .red{
+            background: red;
+        }
+        .dreen{
+            background: green;
+        }
+        .yello{
+            background:yellow;
+        }
+        .w{
+            width: 400px;
+        }
+        .h{
+            height:400px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <div class="myCss" v-bind:class="{w:true,red:true}"></div> -->
+        <div class="myCss" v-bind:class="{yello:flag}"></div>
+        <div class="myCss" v-bind:class="{dreen:flag}"></div>
+        <div class="myCss" v-bind:class="myclassname"></div>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            flag:false
+        },
+       computed:{
+           myclassname:function(){
+               return {
+                   red:true,
+                   w:true,
+                   h:true
+               }
+           }
+       }
+    })
+
+</script>

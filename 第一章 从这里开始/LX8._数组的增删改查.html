@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组的增删改查</title>
+    <script src="vue.js"></script>
+</head>
+<body> 
+    <div id="app">
+        <button v-on:click="arr_add">增</button>
+        <button v-on:click="arr_del">删</button>
+        <button v-on:click="arr_cha">改</button>
+        <button v-on:click="arr_sel">查</button>
+        <p></p>
+        <input id="inp" type="text">
+        <p>{{arr}}</p>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el:"#app",
+        data:{
+            arr:"[11,22,33,44,5,66]"
+        },
+        methods:{
+            arr_add:function(){
+                this.arr.push=inp.value
+            }
+        }
+    })
+
+
+</script>

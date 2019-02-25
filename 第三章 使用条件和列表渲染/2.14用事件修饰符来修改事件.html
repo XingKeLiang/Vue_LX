@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-on:mousemove="chenge">
+            Coordinates:{{x}}/{{y}}
+            -------
+            <!-- 在绑定的事件后面打点用stop来阻止事件冒泡 -->
+            <span v-on:mousemove.stop="chenges">hello</span>
+        </p>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el:"#app",
+        data:{
+            x:0,
+            y:0
+        },
+        methods:{
+            chenge:function(){
+                this.x=event.clientX;
+                this.y=event.clientY;
+                // alert(2);
+            },
+            chenges:function(){
+                // alert(1);
+            }
+        }
+    })
+
+</script>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+    <section class="row">
+        <!-- 玩家的血量值 -->
+        <div class="small-6 columns">
+            <h1 class="text-center">YOU</h1>
+            <div class="healthbar">
+                <div
+                    class="healthbar text-center"
+                    style="background-color: green; margin: 0; color: white;"
+                    :style="{width: playerHealth + '%'}">
+                    {{playerHealth}}
+                </div>
+            </div>
+        </div>
+        <!-- 怪兽的血量值 -->
+        <div class="small-6 columns">
+            <h1 class="text-center">MONSTER</h1>
+            <div class="healthbar">
+                <div
+                    class="healthbar text-center"
+                    style="background-color: green; margin: 0; color: white;"
+                    :style="{width:monsterHealth+'%'}"
+                    >
+                    {{monsterHealth}}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 开始游戏按钮 -->
+    <section class="row controls"v-if="gameIsRunning">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startGame">START NEW GAME</button>
+        </div>
+    </section>
+    <!-- 游戏内操作按钮 -->
+    <section class="row controls" v-else>
+        <div class="small-12 columns">
+            <button id="attack" @click="Attack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+            <button id="heal" @click="heal">HEAL</button>
+            <button id="give-up" @click="giveUp">GIVE UP</button>
+        </div>
+    </section>
+    <!-- 进攻详情的输出日志 -->
+    <section class="row log" v-if="truns.length > 0">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for="trun in truns"
+                    :class="{'player-turn':trun.inPlayer,'monster-turn':!trun.inPlayer}"
+                    >
+                    {{trun.text}}
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+<script>
+     new Vue({
+         el:"#app",
+         data:{
+             truns:[],
+             playerHealth:100,  //自己的血量值
+             monsterHealth:100,  //怪兽的血量值
+             gameIsRunning:true
+         },
+        methods:{
+            //开始游戏的方法
+            startGame:function(){
+                this.gameIsRunning=false;
+                this.playerHealth=100;  //自己的血量值
+                this.monsterHealth=100; //怪兽的血量值
+                this.truns=[];
+            },
+            //玩家攻击的方法
+            Attack:function(){
+               var damage = this.calculateDamage(3,10);
+               this.monsterHealth -= damage;
+               this.mosterAttacks();
+               this.checkwin();
+               this.truns.unshift({
+                   inPlayer:true,
+                   text:"玩家对怪兽造成了"+damage+"的伤害"
+               })
+               if(this.checkwin()){
+                   return;
+               }
+            },
+            //怪兽攻击的方法
+            mosterAttacks:function(){
+                var damage = this.calculateDamage(5,12);//随机伤害值的
+                this.playerHealth-=damage;
+                this.checkwin();
+                this.truns.unshift({
+                    inPlayer:false,
+                   text:"怪兽对玩家造成了"+damage+"的伤害"
+               })
+            },
+            //特殊攻击的方法
+            specialAttack:function(){
+                var damage = this.calculateDamage(10,20);
+                this.monsterHealth -= damage;
+                this.Attack();
+                this.truns.unshift({
+                    inPlayer:false,
+                   text:"怪兽对玩家造成了"+damage+"的特殊伤害"
+               })
+            },
+            //玩家回复血量的方法
+            heal:function(){
+                if(this.playerHealth <= 90){
+                    var damage = this.calculateDamage(8,16);
+                    this.playerHealth += damage;
+                }else{ 
+                    this.playerHealth = 100;
+                }
+                this.truns.unshift({
+                   inPlayer:false,
+                   text:"玩家恢复"+damage+"的血量"
+               })
+            },
+            // 攻击值的随机数方法
+            calculateDamage:function(min,max){
+                return Math.max(Math.floor(Math.random()*max)+1,min);
+            },
+            //放弃游戏重新开始的方法
+            giveUp:function(){
+                this.gameIsRunning=true;
+                this.playerHealth=100;  //自己的血量值
+                this.monsterHealth=100; //怪兽的血量值
+                this.truns=[];
+            },
+            //胜利或者失败后的执行
+            checkwin:function(){
+                //胜利
+                if(this.monsterHealth <= 0){
+                    if(confirm("我胜利了，是否开始新的游戏！！")){
+                         return this. startGame();
+                         this.truns=[];
+                    }else{
+                        this.gameIsRunning=true;
+                        this.playerHealth=100;  //自己的血量值
+                        this.monsterHealth=100; //怪兽的血量值
+                    }  
+                    return true;
+                }
+                //失败
+                if (this.playerHealth <= 0) {
+                    if(confirm("我失败了，是否开始新的游戏！！")){
+                         return this. startGame();
+                         this.truns=[];
+                    }else{
+                        this.gameIsRunning=true;
+                        this.playerHealth=100;  //自己的血量值
+                        this.monsterHealth=100; //怪兽的血量值
+                    }  
+                }          
+            }
+        }
+     })
+
+
+</script>
