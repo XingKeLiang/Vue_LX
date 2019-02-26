@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{lastName}}</p>
+        <p>{{firstName}}</p>
+        <button @click="chencge">test</button>
+        <p>{{fullName}}</p>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            lastName:"hello",
+            firstName:"world",
+            fullName:"123",
+        },
+        watch:{
+            firstName:function(Nval,Oval){
+                this.fullName= Nval+"...."+Oval
+            }
+        },
+        methods:{
+            chencge:function(){
+                this.firstName="hahaha"
+            }
+        }
+    })
+
+</script>
