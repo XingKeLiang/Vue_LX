@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
  <div id="container">
     <form>
             <div class="row">
@@ -19,8 +19,9 @@
                                 type="password"
                                 id="password"
                                 class="form-control"
-                                v-model="Password"
+                                v-model.lazy="Password"
                                 >
+                                <p>{{yanzheng()}}</p>
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
@@ -29,7 +30,6 @@
                                 id="age"
                                 class="form-control"
                                 v-model="Age">
-
                     </div>
 
                 </div>
@@ -51,6 +51,7 @@
                     <div class="form-group">
                         <label for="sendmail">
                             <input
+                                    v-model="send"
                                     type="checkbox"
                                     id="sendmail"
                                     value="SendMail"
@@ -58,6 +59,7 @@
                         </label>
                         <label for="sendInfomail">
                             <input
+                                    v-model="send"
                                     type="checkbox"
                                     id="sendInfomail"
                                     value="SendInfoMail"> Send Infomail
@@ -70,12 +72,14 @@
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
                     <label for="male">
                         <input
+                                v-model="gender"
                                 type="radio"
                                 id="male"
                                 value="Male"> Male
                     </label>
                     <label for="female">
                         <input
+                                v-model="gender"
                                 type="radio"
                                 id="female"
                                 value="Female"> Female
@@ -86,9 +90,10 @@
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
                     <label for="priority">Priority</label>
                     <select
+                            v-model="selected"
                             id="priority"
                             class="form-control">
-                        <option></option>
+                        <option v-for="item in priority">{{item}}</option>
                     </select>
                 </div>
             </div>
@@ -96,13 +101,14 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <button
+                            @click.prevent="flag=true"
                             class="btn btn-primary">Submit!
                     </button>
                 </div>
             </div>
         </form>
         <hr>
-        <div class="row">
+        <div class="row" v-if="flag">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -115,10 +121,10 @@
                         <p>Message:{{Message}} </p>
                         <p><strong>Send Mail?</strong></p>
                         <ul>
-                            <li></li>
+                            <li v-for="item in send">{{item}}</li>
                         </ul>
-                        <p>Gender:</p>
-                        <p>Priority:</p>
+                        <p>Gender:{{gender}}</p>
+                        <p >Priority:{{selected}}</p>
                         <p>Switched:</p>
                     </div>
                 </div>
@@ -136,10 +142,23 @@ export default {
       Password:"",
       Age:"",
       Message:"",
+      send:[],
+      gender:"Male",
+      priority:["red","yellow","high"],
+      selected:"",
+      flag:false
     }
   },
   methods:{
-       
+    yanzheng:function(){
+      if(this.Password==""){
+        return
+      }else if(this.Password=="123456"){
+        return "密码正确"
+      } else{
+        return "密码错误"
+      }
+    }
   }
 }
 </script>

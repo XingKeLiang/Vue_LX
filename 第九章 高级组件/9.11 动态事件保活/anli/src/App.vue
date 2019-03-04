@@ -20,15 +20,15 @@ import Red from './Red.vue'
 import Yellow from './Yellow.vue'
 import Blue from './Blue.vue'
 export default {
-  data:function(){
-      return {
-        selectedComponent:"AddRed"
-      }
-  },
   components:{
     "AddRed":Red,
     "AddBlue":Blue,
     "AddYellow":Yellow
+  },
+  data:function(){
+    return {
+      selectedComponent:"AddRed"
+    }
   }
 }
 </script>
