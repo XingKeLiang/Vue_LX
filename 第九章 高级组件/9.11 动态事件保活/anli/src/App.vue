@@ -9,6 +9,9 @@
               <P>{{selectedComponent}}</P>
               <keep-alive>
                 <component :is="selectedComponent"></component>
+                <add-red>
+                  <h1>helloworld</h1>
+                </add-red>
               </keep-alive>
             </div>
         </div>
