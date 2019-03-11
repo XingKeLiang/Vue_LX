@@ -6,8 +6,8 @@
       <li>姓名：{{title.name}}</li>
       <li>得分：{{title.point}}</li>
     </ul>
-    <router-link to="profile">简介</router-link>
-    <router-link to="stats">数据</router-link>
+    <router-link to="/profile">简介</router-link>
+    <router-link to="/stats">数据</router-link>
     <hr>
     <router-view></router-view>
   </div>

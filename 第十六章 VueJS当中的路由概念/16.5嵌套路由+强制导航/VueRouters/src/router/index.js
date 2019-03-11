@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Plear from '@/components/Plear'
-import Prifile from '@/components/Plears/Profile'
+import Profile from '@/components/Plears/Profile'
 import Stats from '@/components/Plears/Stats'
 // import About from '@/components/About'
 // import News from '@/components/News'
@@ -23,7 +23,7 @@ export default new Router({
       children:[
         {
           path:'/profile',
-          component:Prifile
+          component:Profile
         },
         {
           path:'/stats',
