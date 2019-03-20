@@ -1,21 +1,34 @@
 <template>
   <div class="hello">
-    <h1>Vuex状态管理</h1>
-    <hr>
-    <app-conter></app-conter>
-    <app-result></app-result>
+      <h1>vuex状态管理</h1>
+      <hr>
+      <app-b></app-b>
+      <app-a></app-a>
+      <hr>
+      <funA></funA>
+      <hr>
+      <funB></funB>
   </div>
 </template>
 
 <script>
-import Conter from './Conter.vue'
-import Result from './Result.vue'
+import A from './A.vue'
+import B from './B.vue'
+import funA from './funA.vue'
+import funB from './funB.vue'
 export default {
   components:{
-    appConter :Conter,
-    appResult :Result
+    appA:A,
+    appB:B,
+    funA:funA,
+    funB:funB
   },
-  name: 'HelloWorld'
+  name: 'HelloWorld',
+  data () {
+    return {
+      msg: 'Welcome to Your Vue.js App'
+    }
+  }
 }
 </script>
 
